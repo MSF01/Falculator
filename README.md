@@ -1,6 +1,6 @@
-# calculator
+# Falculator
 
-A new Flutter project.
+A Calculator just made in Flutter for Android & iOS.
 
 ## Getting Started
 
