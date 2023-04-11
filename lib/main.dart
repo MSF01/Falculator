@@ -5,22 +5,28 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Utils/routes.dart';
 
 void main() {
-  runApp(Calculator());
+  runApp(const Calculator());
 }
 
 class Calculator extends StatelessWidget {
+  const Calculator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.light,
       theme: ThemeData(
-          primarySwatch: Colors.red, fontFamily: GoogleFonts.lato().fontFamily),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+          primarySwatch: Colors.orange,
+          fontFamily: GoogleFonts.lato().fontFamily,
+          inputDecorationTheme: const InputDecorationTheme(
+              labelStyle: TextStyle(color: Colors.orange, fontSize: 22),
+              focusColor: Colors.white54)),
+      // darkTheme: ThemeData(brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
       initialRoute: "/login",
       routes: {
         "/": (context) => LoginPage(),
-        MyRoutes.homeRoute: (context) => HomePage(),
+        MyRoutes.homeRoute: (context) => const HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage()
       },
     );
