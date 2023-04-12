@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Falculator"),
         backgroundColor: Colors.black38,
         foregroundColor: Colors.white,
+        centerTitle: true,
         automaticallyImplyLeading: false,
         titleTextStyle: TextStyle(
             fontSize: 24,
@@ -53,14 +54,20 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.vertical,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "$text",
-                      textAlign: TextAlign.left,
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 100),
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Transform.scale(
+                      scale: 0.8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "$text",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 100),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -147,8 +154,12 @@ class _HomePageState extends State<HomePage> {
     } else if (btntext == "+" ||
         btntext == "-" ||
         btntext == "X" ||
-        btntext == "/") {
+        btntext == "/" ||
+        btntext == "%") {
       numone = int.parse(text);
+      // if (numone == null) {
+      //   print("The value is not a integer");
+      // }
       result = "";
       operation = btntext;
     } else if (btntext == "=") {
@@ -165,10 +176,19 @@ class _HomePageState extends State<HomePage> {
       if (operation == "/") {
         result = (numone / numtwo).toString();
       }
-    } else if (operation == "+/-") {
+      if (operation == "%") {
+        result = (numone % numtwo).toString();
+      }
+    } else if (btntext == "+/-") {
       text.toString().startsWith('-')
           ? text = result.toString().substring(1)
           : text = '-' + text.toString();
+      result = text;
+    } else if (btntext == ".") {
+      text = result.toString() + '.';
+      result = text;
+    } else if (btntext == "0") {
+      text = result.toString() + '0';
       result = text;
     } else {
       result = int.parse(text + btntext).toString();
