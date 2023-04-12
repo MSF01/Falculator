@@ -21,7 +21,8 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changebtn = true;
       });
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
         changebtn = false;
@@ -76,8 +77,11 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: BorderSide(color: Colors.orange)),
                               labelText: "Username",
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
+                            validator: (uservalue) {
+                              if (uservalue != "Admin") {
+                                return "Invalid Username";
+                              }
+                              if (uservalue!.isEmpty) {
                                 return "Username can't be empty";
                               }
                               return null;
@@ -101,13 +105,14 @@ class _LoginPageState extends State<LoginPage> {
                                     borderSide:
                                         BorderSide(color: Colors.orange)),
                                 labelText: "Password"),
-                            validator: (value) {
-                              if (value!.isEmpty) {
+                            validator: (pwdvalue) {
+                              if (pwdvalue != "root") {
+                                return "Invalid Password";
+                              } else if (pwdvalue!.isEmpty) {
                                 return "Password can't be empty";
-                              } else if (value.length < 6) {
+                              } else if (pwdvalue.length < 4) {
                                 return "Password length is insufficient";
                               }
-
                               return null;
                             },
                           ),

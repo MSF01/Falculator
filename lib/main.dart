@@ -16,18 +16,19 @@ class Calculator extends StatelessWidget {
     return MaterialApp(
       // themeMode: ThemeMode.light,
       theme: ThemeData(
-          primarySwatch: Colors.orange,
-          fontFamily: GoogleFonts.lato().fontFamily,
-          inputDecorationTheme: const InputDecorationTheme(
-              labelStyle: TextStyle(color: Colors.orange, fontSize: 22),
-              focusColor: Colors.white54)),
+        primarySwatch: Colors.orange,
+        fontFamily: GoogleFonts.lato().fontFamily,
+        inputDecorationTheme: const InputDecorationTheme(
+            labelStyle: TextStyle(color: Colors.orange, fontSize: 22),
+            focusColor: Colors.white54),
+      ),
       // darkTheme: ThemeData(brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
       initialRoute: "/login",
       routes: {
-        "/": (context) => LoginPage(),
+        "/": (context) => const LoginPage(),
         MyRoutes.homeRoute: (context) => const HomePage(),
-        MyRoutes.loginRoute: (context) => LoginPage()
+        MyRoutes.loginRoute: (context) => const LoginPage()
       },
     );
   }
