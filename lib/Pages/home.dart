@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           "$text",
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.right,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 100),
                         ),
@@ -121,13 +121,32 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(34, 20, 123, 20),
                       backgroundColor: Colors.grey[850],
                       shape: const StadiumBorder()),
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      text = text + "0";
+                    });
+                  },
                   child: const Text(
                     '0',
                     style: TextStyle(fontSize: 35, color: Colors.white),
                   ),
                 ),
-                calc('.', Colors.grey[850]!, Colors.white, 34),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(25),
+                      backgroundColor: Colors.grey[850],
+                      shape: const CircleBorder()),
+                  onPressed: () {
+                    setState(() {
+                      text = text + ".";
+                    });
+                  },
+                  child: const Text(
+                    '.',
+                    style: TextStyle(fontSize: 35, color: Colors.white),
+                  ),
+                ),
+                // calc('.', Colors.grey[850]!, Colors.white, 34),
                 calc('=', Colors.amber[700]!, Colors.white, 24),
               ],
             ),
@@ -138,9 +157,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // The main algorithm
+
   dynamic text = '';
   int numone = 0;
   int numtwo = 0;
+
+  bool hasdecimal = false;
 
   dynamic result = '';
   dynamic operation = '';
@@ -157,10 +180,7 @@ class _HomePageState extends State<HomePage> {
         btntext == "/" ||
         btntext == "%") {
       numone = int.parse(text);
-      // if (numone == null) {
-      //   print("The value is not a integer");
-      // }
-      result = "";
+      result = '';
       operation = btntext;
     } else if (btntext == "=") {
       numtwo = int.parse(text);
@@ -184,14 +204,8 @@ class _HomePageState extends State<HomePage> {
           ? text = result.toString().substring(1)
           : text = '-' + text.toString();
       result = text;
-    } else if (btntext == ".") {
-      text = result.toString() + '.';
-      result = text;
-    } else if (btntext == "0") {
-      text = result.toString() + '0';
-      result = text;
     } else {
-      result = int.parse(text + btntext).toString();
+      result = double.parse(text + btntext).toString();
     }
 
     setState(() {
