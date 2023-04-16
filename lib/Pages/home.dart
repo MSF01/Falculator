@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,17 +56,20 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Flexible(
+                  Expanded(
                     flex: 1,
                     child: Transform.scale(
                       scale: 0.8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
+                      child: SizedBox(
+                        // padding: const EdgeInsets.all(10.0),
+                        child: AutoSizeText(
                           "$text",
                           textAlign: TextAlign.right,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 100),
+                          maxLines: 1,
+                          overflowReplacement:
+                              const Text('Sorry String too long'),
                         ),
                       ),
                     ),
