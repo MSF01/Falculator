@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Expanded(
+                  Flexible(
                     flex: 1,
                     child: Transform.scale(
                       scale: 0.8,
