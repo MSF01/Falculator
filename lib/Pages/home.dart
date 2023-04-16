@@ -160,8 +160,11 @@ class _HomePageState extends State<HomePage> {
   // The main algorithm
 
   dynamic text = '';
-  int numone = 0;
-  int numtwo = 0;
+
+  dynamic numone = 0;
+  dynamic numtwo = 0;
+
+  // late double dnumone = numone.toDouble();
 
   bool hasdecimal = false;
 
@@ -179,11 +182,20 @@ class _HomePageState extends State<HomePage> {
         btntext == "X" ||
         btntext == "/" ||
         btntext == "%") {
-      numone = int.parse(text);
+      if (text.contains('.')) {
+        numone = double.parse(text);
+      } else {
+        numone = int.parse(text);
+      }
+
       result = '';
       operation = btntext;
     } else if (btntext == "=") {
-      numtwo = int.parse(text);
+      if (text.contains('.')) {
+        numtwo = double.parse(text);
+      } else {
+        numtwo = int.parse(text);
+      }
       if (operation == "+") {
         result = (numone + numtwo).toString();
       }
@@ -204,8 +216,10 @@ class _HomePageState extends State<HomePage> {
           ? text = result.toString().substring(1)
           : text = '-' + text.toString();
       result = text;
-    } else {
+    } else if (text.contains('.')) {
       result = double.parse(text + btntext).toString();
+    } else {
+      result = int.parse(text + btntext).toString();
     }
 
     setState(() {
