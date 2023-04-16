@@ -4,4 +4,4 @@ A Calculator just made in Flutter for Android & iOS.
 
 ## Current Status:
 
-Still Under Development 🛠️
+The app itself has been completed soon gonna updated the README 🛠️
